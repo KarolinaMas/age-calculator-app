@@ -2,7 +2,7 @@ import arrowIcon from "./assets/arrow-icon.svg";
 
 const App = () => {
   return (
-    <div className="bg-amber-100">
+    <div className="bg-white">
       <form>
         <label htmlFor="day">day</label>
         <input type="text" id="day" />
