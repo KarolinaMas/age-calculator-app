@@ -1,15 +1,60 @@
+import { useEffect, useState } from "react";
 import arrowIcon from "./assets/arrow-icon.svg";
+import InfoInput from "./components/InfoInput";
 
 const App = () => {
+  const [result, setResult] = useState({
+    years: "",
+    months: "",
+    days: "",
+  });
+
+  const [birthDate, setBirthDate] = useState({
+    years: "",
+    months: "",
+    days: "",
+  });
+
+  const handleInputChange = (
+    id: string,
+    e: React.ChangeEvent<HTMLInputElement>
+  ): void => {
+    if (id === "year") {
+      setBirthDate((prev) => ({ ...prev, years: e.target.value }));
+    } else if (id === "month") {
+      setBirthDate((prev) => ({ ...prev, months: e.target.value }));
+    } else {
+      setBirthDate((prev) => ({ ...prev, days: e.target.value }));
+    }
+  };
+
+  useEffect(() => {
+    console.log(birthDate);
+  }, [birthDate]);
+
   return (
-    <div className="bg-white">
+    <div className="bg-white max-w-[343px] mx-auto px-6 py-12">
       <form>
-        <label htmlFor="day">day</label>
-        <input type="text" id="day" />
-        <label htmlFor="month">month</label>
-        <input type="text" id="month" />
-        <label htmlFor="year">year</label>
-        <input type="text" id="year" />
+        <div className="flex flex-wrap justify-between">
+          <InfoInput
+            id={"day"}
+            label={"day"}
+            value={birthDate.days}
+            handleChange={handleInputChange}
+          />
+          <InfoInput
+            id={"month"}
+            label={"month"}
+            value={birthDate.months}
+            handleChange={handleInputChange}
+          />
+          <InfoInput
+            id={"year"}
+            label={"year"}
+            value={birthDate.years}
+            handleChange={handleInputChange}
+          />
+        </div>
         <button>
           <img src={arrowIcon} />
         </button>
