@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import arrowIcon from "./assets/arrow-icon.svg";
 import InfoInput from "./components/InfoInput";
+import ResultParagraph from "./components/ResultParagraph";
 
 const App = () => {
   const [result, setResult] = useState({
@@ -60,9 +61,9 @@ const App = () => {
         </button>
       </form>
       <div>
-        <p>years</p>
-        <p>monts</p>
-        <p>days</p>
+        <ResultParagraph result={result.years}> years</ResultParagraph>
+        <ResultParagraph result={result.months}> months</ResultParagraph>
+        <ResultParagraph result={result.days}> days</ResultParagraph>
       </div>
     </div>
   );
