@@ -33,8 +33,8 @@ const App = () => {
   }, [birthDate]);
 
   return (
-    <div className="bg-white max-w-[343px] mx-auto px-6 py-12">
-      <form>
+    <div className="bg-white max-w-[343px] mx-auto px-6 py-12 rounded-3xl rounded-br-[100px]">
+      <form className="relative border-b border-b-gray-200 pb-16 mb-16">
         <div className="flex flex-wrap justify-between">
           <InfoInput
             id={"day"}
@@ -55,7 +55,7 @@ const App = () => {
             handleChange={handleInputChange}
           />
         </div>
-        <button>
+        <button className="absolute mt-8 left-[50%] translate-x-[-50%] bg-purple-500 w-16 h-16 flex items-center justify-center rounded-full">
           <img src={arrowIcon} />
         </button>
       </form>
