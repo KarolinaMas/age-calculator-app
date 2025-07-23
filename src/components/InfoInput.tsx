@@ -25,11 +25,11 @@ const InfoInput = ({ id, label, value, handleChange }: InfoInputProps) => {
         {label}
       </label>
       <input
-        type="text"
+        type="number"
         id={id}
         value={value}
         placeholder={placeholderText}
-        className="w-[100%] border border-gray-200 rounded-lg text-xl font-bold  mt-2  px-4 py-2 outline-none cursor-pointer"
+        className="w-[100%] border border-gray-200 rounded-lg text-xl font-bold  mt-2  px-4 py-2 outline-none cursor-pointer no-spinner"
         maxLength={id === "year" ? 4 : 2}
         onChange={(e) => handleChange(id, e)}
       />

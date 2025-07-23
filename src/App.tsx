@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { intervalToDuration } from "date-fns";
 import arrowIcon from "./assets/arrow-icon.svg";
 import InfoInput from "./components/InfoInput";
 import ResultParagraph from "./components/ResultParagraph";
@@ -24,18 +25,42 @@ const App = () => {
       setBirthDate((prev) => ({ ...prev, years: e.target.value }));
     } else if (id === "month") {
       setBirthDate((prev) => ({ ...prev, months: e.target.value }));
-    } else {
+    } else if (id === "day") {
       setBirthDate((prev) => ({ ...prev, days: e.target.value }));
     }
   };
 
-  useEffect(() => {
-    console.log(birthDate);
-  }, [birthDate]);
+  const calculateAge = (): void => {
+    const { years, months, days } = birthDate;
+    const birthYear = Number(years);
+    const birthMonth = Number(months) - 1;
+    const birthDay = Number(days);
+
+    const groundDate = new Date(birthYear, birthMonth, birthDay);
+    const today = new Date();
+
+    const duration = intervalToDuration({ start: groundDate, end: today });
+
+    if (duration) {
+      setResult({
+        years: String(duration.years),
+        months: String(duration.months),
+        days: String(duration.days),
+      });
+    }
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    calculateAge();
+  };
 
   return (
     <div className="bg-white max-w-[343px] mx-auto px-6 py-12 rounded-3xl rounded-br-[100px]">
-      <form className="relative border-b border-b-gray-200 pb-16 mb-16">
+      <form
+        className="relative border-b border-b-gray-200 pb-16 mb-16"
+        onSubmit={(e) => handleSubmit(e)}
+      >
         <div className="flex flex-wrap justify-between">
           <InfoInput
             id={"day"}
@@ -56,7 +81,10 @@ const App = () => {
             handleChange={handleInputChange}
           />
         </div>
-        <button className="absolute mt-8 left-[50%] translate-x-[-50%] bg-purple-500 w-16 h-16 flex items-center justify-center rounded-full">
+        <button
+          className="absolute mt-8 left-[50%] translate-x-[-50%] bg-purple-500 w-16 h-16 flex items-center justify-center rounded-full"
+          type="submit"
+        >
           <img src={arrowIcon} />
         </button>
       </form>
