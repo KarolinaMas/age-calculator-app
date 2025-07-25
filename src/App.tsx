@@ -37,15 +37,19 @@ const App = () => {
     const birthDay = Number(days);
 
     const groundDate = new Date(birthYear, birthMonth, birthDay);
-    const today = new Date();
+    if (isNaN(groundDate.getTime())) {
+      alert("Invalid birth date.");
+      return;
+    }
 
+    const today = new Date();
     const duration = intervalToDuration({ start: groundDate, end: today });
 
     if (duration) {
       setResult({
-        years: String(duration.years),
-        months: String(duration.months),
-        days: String(duration.days),
+        years: String(duration.years ?? 0),
+        months: String(duration.months ?? 0),
+        days: String(duration.days ?? 0),
       });
     }
   };
