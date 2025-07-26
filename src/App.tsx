@@ -60,7 +60,7 @@ const App = () => {
   };
 
   return (
-    <div className="bg-white max-w-[343px] mx-auto px-6 py-12 rounded-3xl rounded-br-[100px]">
+    <div className="bg-white max-w-[343px] mx-auto px-6 py-12 rounded-3xl rounded-br-[100px]  max-[360px]:mx-2.5">
       <form
         className="relative border-b border-b-gray-200 pb-16 mb-16"
         onSubmit={(e) => handleSubmit(e)}
