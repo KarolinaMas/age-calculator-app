@@ -5,20 +5,26 @@ import arrowIcon from "./assets/arrow-icon.svg";
 import InfoInput from "./components/InfoInput";
 import ResultParagraph from "./components/ResultParagraph";
 
+type DateInfo = {
+  years: string;
+  months: string;
+  days: string;
+};
+
 const App = () => {
-  const [result, setResult] = useState({
+  const [result, setResult] = useState<DateInfo>({
     years: "",
     months: "",
     days: "",
   });
 
-  const [birthDate, setBirthDate] = useState({
+  const [birthDate, setBirthDate] = useState<DateInfo>({
     years: "",
     months: "",
     days: "",
   });
 
-  const [errors, setErrors] = useState({
+  const [errors, setErrors] = useState<DateInfo>({
     years: "",
     months: "",
     days: "",
@@ -39,30 +45,37 @@ const App = () => {
     }
   };
 
-  const validateInputs = () => {
+  const validateInputs = (): boolean => {
     const convertedBirthDate = convertStringsToNumbers(birthDate);
     const { years, months, days } = convertedBirthDate;
 
-    let isValid = true;
-    const currentYear = new Date();
+    let valid = true;
+    const errors: DateInfo = {
+      years: "",
+      months: "",
+      days: "",
+    };
+
+    const currentYear = new Date().getFullYear();
+
+    if (years > currentYear) {
+      errors.years = "Must be in the past";
+      valid = false;
+    }
+
+    if (months < 1 || months > 12) {
+      errors.months = "Must be a valid month";
+      valid = false;
+    }
+
     const maxDay = new Date(years, months, 0).getDate();
-
-    if (currentYear.getFullYear() < years) {
-      setErrors((prev) => ({ ...prev, years: "Must be in the past" }));
-      isValid = false;
+    if (days < 1 || days > maxDay) {
+      errors.days = "Must be a valid day";
+      valid = false;
     }
 
-    if (1 > months || months > 12) {
-      setErrors((prev) => ({ ...prev, months: "Must be a valid month" }));
-      isValid = false;
-    }
-
-    if (1 < days || days > maxDay) {
-      setErrors((prev) => ({ ...prev, days: "Must be a valid day" }));
-      isValid = false;
-    }
-
-    return isValid;
+    setErrors(errors);
+    return valid;
   };
 
   const calculateAge = (): void => {
