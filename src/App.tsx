@@ -24,6 +24,8 @@ const App = () => {
     days: "",
   });
 
+  const isFormValid = !errors.days && !errors.months && !errors.years;
+
   const handleInputChange = (
     id: string,
     e: React.ChangeEvent<HTMLInputElement>
@@ -105,18 +107,21 @@ const App = () => {
             id={"day"}
             value={birthDate.days}
             error={errors.days}
+            isValid={isFormValid}
             handleChange={handleInputChange}
           />
           <InfoInput
             id={"month"}
             value={birthDate.months}
             error={errors.months}
+            isValid={isFormValid}
             handleChange={handleInputChange}
           />
           <InfoInput
             id={"year"}
             value={birthDate.years}
             error={errors.years}
+            isValid={isFormValid}
             handleChange={handleInputChange}
           />
         </div>
