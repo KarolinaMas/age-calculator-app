@@ -139,7 +139,10 @@ const App = () => {
           />
         </div>
         <button
-          className="absolute mt-8 left-[50%] translate-x-[-50%] bg-purple-500 w-16 h-16 flex items-center justify-center rounded-full"
+          className="
+              absolute mt-8 left-[50%] translate-x-[-50%] bg-purple-500 w-16 h-16 flex items-center justify-center rounded-full
+              hover:bg-black focus:bg-black cursor-pointer
+              transition-colors duration-300 ease-in-out"
           type="submit"
         >
           <img src={arrowIcon} />
