@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { intervalToDuration } from "date-fns";
+import { convertStringsToNumbers } from "./utils.ts";
 import arrowIcon from "./assets/arrow-icon.svg";
 import InfoInput from "./components/InfoInput";
 import ResultParagraph from "./components/ResultParagraph";
@@ -12,6 +13,12 @@ const App = () => {
   });
 
   const [birthDate, setBirthDate] = useState({
+    years: "",
+    months: "",
+    days: "",
+  });
+
+  const [errors, setErrors] = useState({
     years: "",
     months: "",
     days: "",
@@ -30,17 +37,41 @@ const App = () => {
     }
   };
 
+  const validateInputs = () => {
+    const convertedBirthDate = convertStringsToNumbers(birthDate);
+    const { years, months, days } = convertedBirthDate;
+
+    let isValid = true;
+    const currentYear = new Date();
+    const maxDay = new Date(years, months, 0).getDate();
+
+    if (currentYear.getFullYear() < years) {
+      setErrors((prev) => ({ ...prev, years: "Must be in the past" }));
+      isValid = false;
+    }
+
+    if (1 > months || months > 12) {
+      setErrors((prev) => ({ ...prev, months: "Must be a valid month" }));
+      isValid = false;
+    }
+
+    if (1 < days || days > maxDay) {
+      setErrors((prev) => ({ ...prev, days: "Must be a valid day" }));
+      isValid = false;
+    }
+
+    return isValid;
+  };
+
   const calculateAge = (): void => {
-    const { years, months, days } = birthDate;
-    const birthYear = Number(years);
-    const birthMonth = Number(months) - 1;
-    const birthDay = Number(days);
+    const convertedBirthDate = convertStringsToNumbers(birthDate);
+    const { years, months, days } = convertedBirthDate;
+
+    const birthYear = years;
+    const birthMonth = months - 1;
+    const birthDay = days;
 
     const groundDate = new Date(birthYear, birthMonth, birthDay);
-    if (isNaN(groundDate.getTime())) {
-      alert("Invalid birth date.");
-      return;
-    }
 
     const today = new Date();
     const duration = intervalToDuration({ start: groundDate, end: today });
@@ -56,7 +87,11 @@ const App = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    calculateAge();
+    const isValid = validateInputs();
+
+    if (isValid) {
+      calculateAge();
+    }
   };
 
   return (
@@ -68,20 +103,20 @@ const App = () => {
         <div className="flex flex-wrap justify-between">
           <InfoInput
             id={"day"}
-            label={"day"}
             value={birthDate.days}
+            error={errors.days}
             handleChange={handleInputChange}
           />
           <InfoInput
             id={"month"}
-            label={"month"}
             value={birthDate.months}
+            error={errors.months}
             handleChange={handleInputChange}
           />
           <InfoInput
             id={"year"}
-            label={"year"}
             value={birthDate.years}
+            error={errors.years}
             handleChange={handleInputChange}
           />
         </div>

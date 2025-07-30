@@ -1,11 +1,11 @@
 type InfoInputProps = {
   id: string;
-  label: string;
   value: string;
+  error: string;
   handleChange: (id: string, e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-const InfoInput = ({ id, label, value, handleChange }: InfoInputProps) => {
+const InfoInput = ({ id, value, error, handleChange }: InfoInputProps) => {
   let placeholderText = "";
 
   if (id === "year") {
@@ -22,7 +22,7 @@ const InfoInput = ({ id, label, value, handleChange }: InfoInputProps) => {
         htmlFor={id}
         className="text-xs uppercase font-bold tracking-[4px] text-[#716F6F]"
       >
-        {label}
+        {id}
       </label>
       <input
         type="number"
@@ -33,6 +33,7 @@ const InfoInput = ({ id, label, value, handleChange }: InfoInputProps) => {
         maxLength={id === "year" ? 4 : 2}
         onChange={(e) => handleChange(id, e)}
       />
+      {error && <p>{error}</p>}
     </div>
   );
 };
