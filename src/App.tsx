@@ -114,7 +114,7 @@ const App = () => {
       className="
           bg-white max-w-[343px] w-full mx-auto px-6 py-12 rounded-3xl rounded-br-[100px]
           max-[360px]:mx-2.5 
-          sm:w-[686px] sm:p-14 sm:rounded-br-[200px]
+          sm:max-w-[686px] sm:p-14 sm:rounded-br-[200px]
           lg:w-[840px] lg:max-w-[840px]
           "
     >
