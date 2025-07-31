@@ -113,14 +113,22 @@ const App = () => {
     <div
       className="
           bg-white max-w-[343px] w-full mx-auto px-6 py-12 rounded-3xl rounded-br-[100px]
-          max-[360px]:mx-2.5 sm:max-w-[686px] sm:p-14 sm:rounded-br-[200px]
+          max-[360px]:mx-2.5 
+          sm:w-[686px] sm:p-14 sm:rounded-br-[200px]
+          lg:w-[840px] lg:max-w-[840px]
           "
     >
       <form
-        className="relative border-b border-b-gray-200 pb-16 mb-16 sm:pb-20 sm:mb-20"
+        className="relative border-b border-b-gray-200 pb-16 mb-16 sm:pb-20 sm:mb-20 lg:mb-16"
         onSubmit={(e) => handleSubmit(e)}
       >
-        <div className="flex justify-between max-[340px]:gap-1.5">
+        <div
+          className="
+                flex justify-between 
+                max-[340px]:gap-1.5 
+                lg:justify-start lg:gap-8
+                "
+        >
           <InfoInput
             id={"day"}
             value={birthDate.days}
@@ -149,6 +157,7 @@ const App = () => {
               hover:bg-black focus:bg-black cursor-pointer
               transition-colors duration-300 ease-in-out
               sm:w-24 sm:h-24
+              lg:left-[93%]
               "
           type="submit"
         >

@@ -51,7 +51,9 @@ const InfoInput = ({
         onChange={(e) => handleChange(id, e)}
       />
       {error && (
-        <p className="text-red-400 text-xs italic leading-[150%]">{error}</p>
+        <p className="text-red-400 text-xs italic leading-[150%] sm:text-sm">
+          {error}
+        </p>
       )}
     </div>
   );
