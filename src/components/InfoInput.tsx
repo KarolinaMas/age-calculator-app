@@ -26,7 +26,7 @@ const InfoInput = ({
   }
 
   return (
-    <div className="max-w-[87px]">
+    <div className="max-w-[87px] shrink">
       <label
         htmlFor={id}
         className={clsx(
@@ -42,7 +42,7 @@ const InfoInput = ({
         value={value}
         placeholder={placeholderText}
         className={clsx(
-          "w-full border border-gray-200 rounded-lg text-xl font-bold my-2 px-4 py-2 outline-none cursor-pointer no-spinner",
+          "w-full border border-gray-200 rounded-lg text-xl font-bold my-2 px-4 py-2 outline-none cursor-pointer no-spinner max-[340px]:text-base",
           !isValid && "border-red-400"
         )}
         maxLength={id === "year" ? 4 : 2}

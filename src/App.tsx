@@ -115,7 +115,7 @@ const App = () => {
         className="relative border-b border-b-gray-200 pb-16 mb-16"
         onSubmit={(e) => handleSubmit(e)}
       >
-        <div className="flex flex-wrap justify-between">
+        <div className="flex justify-between max-[340px]:gap-1.5">
           <InfoInput
             id={"day"}
             value={birthDate.days}
