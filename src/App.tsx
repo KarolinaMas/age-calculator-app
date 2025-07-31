@@ -110,9 +110,14 @@ const App = () => {
   };
 
   return (
-    <div className="bg-white max-w-[343px] mx-auto px-6 py-12 rounded-3xl rounded-br-[100px]  max-[360px]:mx-2.5">
+    <div
+      className="
+          bg-white max-w-[343px] w-full mx-auto px-6 py-12 rounded-3xl rounded-br-[100px]
+          max-[360px]:mx-2.5 sm:max-w-[686px] sm:p-14 sm:rounded-br-[200px]
+          "
+    >
       <form
-        className="relative border-b border-b-gray-200 pb-16 mb-16"
+        className="relative border-b border-b-gray-200 pb-16 mb-16 sm:pb-20 sm:mb-20"
         onSubmit={(e) => handleSubmit(e)}
       >
         <div className="flex justify-between max-[340px]:gap-1.5">
@@ -142,10 +147,12 @@ const App = () => {
           className="
               absolute mt-8 left-[50%] translate-x-[-50%] bg-purple-500 w-16 h-16 flex items-center justify-center rounded-full
               hover:bg-black focus:bg-black cursor-pointer
-              transition-colors duration-300 ease-in-out"
+              transition-colors duration-300 ease-in-out
+              sm:w-24 sm:h-24
+              "
           type="submit"
         >
-          <img src={arrowIcon} />
+          <img src={arrowIcon} className="sm:w-11 sm:h-11" />
         </button>
       </form>
       <div>

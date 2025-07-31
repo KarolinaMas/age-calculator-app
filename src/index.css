@@ -6,6 +6,7 @@
   --color-purple-500: #854dff;
   --color-gray-200: #dcdcdc;
   --color-red-400: #ff5959;
+  --breakpoint-sm: 700px;
 }
 
 body {
