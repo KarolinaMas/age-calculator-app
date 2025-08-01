@@ -36,13 +36,7 @@ const App = () => {
     id: string,
     e: React.ChangeEvent<HTMLInputElement>
   ): void => {
-    if (id === "year") {
-      setBirthDate((prev) => ({ ...prev, years: e.target.value }));
-    } else if (id === "month") {
-      setBirthDate((prev) => ({ ...prev, months: e.target.value }));
-    } else if (id === "day") {
-      setBirthDate((prev) => ({ ...prev, days: e.target.value }));
-    }
+    setBirthDate((prev) => ({ ...prev, [id + "s"]: e.target.value }));
   };
 
   const validateInputs = (): boolean => {
