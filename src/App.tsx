@@ -51,9 +51,18 @@ const App = () => {
     };
 
     const currentYear = new Date().getFullYear();
+    const currentMonth = new Date().getMonth();
+    const currentDay = new Date().getDate();
+    const maxDay = new Date(years, months, 0).getDate();
 
     if (years > currentYear) {
       errors.years = "Must be in the past";
+      valid = false;
+    } else if (
+      years <= 0 ||
+      (currentYear === years && (months > currentMonth || days > currentDay))
+    ) {
+      errors.years = "Must be a valid date";
       valid = false;
     }
 
@@ -62,9 +71,11 @@ const App = () => {
       valid = false;
     }
 
-    const maxDay = new Date(years, months, 0).getDate();
-    if (days < 1 || days > maxDay) {
+    if (days < 1 || days > 31) {
       errors.days = "Must be a valid day";
+      valid = false;
+    } else if (days > maxDay) {
+      errors.days = "Must be a valid date";
       valid = false;
     }
 
