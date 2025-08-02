@@ -53,6 +53,7 @@ const App = () => {
     const currentYear = new Date().getFullYear();
     const currentMonth = new Date().getMonth();
     const currentDay = new Date().getDate();
+
     const maxDay = new Date(years, months, 0).getDate();
 
     if (years > currentYear) {
@@ -162,7 +163,7 @@ const App = () => {
               hover:bg-black focus:bg-black cursor-pointer
               transition-colors duration-300 ease-in-out
               sm:w-24 sm:h-24
-              lg:left-[93%]
+              lg:left-[94%]
               "
           type="submit"
         >
